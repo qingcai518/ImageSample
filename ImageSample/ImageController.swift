@@ -58,10 +58,12 @@ class ImageController: UIViewController {
     func doDoubleTap(recognizer: UITapGestureRecognizer) {
 		if (scrollView.zoomScale < scrollView.maximumZoomScale) {
 			let centerPoint = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
+            
 			let zoomRect: CGRect = self.zoomRectForScale(scale: scrollView.zoomScale * 3, center: centerPoint)
-			scrollView.zoom(to: zoomRect, animated: true)
+            print("zoom rect = \(zoomRect)")
+            scrollView.zoom(to: zoomRect, animated: true)
 		} else {
-			scrollView.setZoomScale(1.0, animated: true)
+            scrollView.setZoomScale(3.0, animated: true)
 		}
 	}
     
@@ -87,6 +89,6 @@ class ImageController: UIViewController {
 
 extension ImageController: UIScrollViewDelegate {
 	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-		return imageView
+        return imageView
 	}
 }
